@@ -1,0 +1,20 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+  max-width: 80vw;
+  gap: 1rem;
+  padding-bottom: 2rem;
+}
+
+.listHeader,
+.listItem {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  min-width: 70vw;
+  padding: 10px;
+  border-radius: 5px;
+}
