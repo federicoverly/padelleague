@@ -110,7 +110,7 @@ export const UploadSubmatches = ({
         </Typography>
         <TextField
           type="number"
-          value={matchTwoTeamOneScore}
+          value={matchTwoTeamTwoScore}
           onChange={(e) => setMatchTwoTeamTwoScore(Number(e.target.value))}
           sx={{
             width: "5rem",

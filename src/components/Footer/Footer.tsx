@@ -5,7 +5,9 @@ import styles from "./Footer.module.css";
 export const Footer = () => {
   return (
     <div className={styles.footer}>
-      <Typography variant="h6">Federico Verly</Typography>
+      <Typography variant="caption">
+        Website developed by Federico Verly
+      </Typography>
     </div>
   );
 };
