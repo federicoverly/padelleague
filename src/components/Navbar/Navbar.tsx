@@ -10,7 +10,6 @@ import Container from "@mui/material/Container";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
-import AdbIcon from "@mui/icons-material/Adb";
 import { useCallback, useState } from "react";
 import { MouseEvent } from "react";
 import { colors } from "../../theme/colors";
@@ -128,7 +127,6 @@ export function Navbar() {
               ))}
             </Menu>
           </Box>
-          <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
           <Typography
             variant="h5"
             noWrap
@@ -145,7 +143,7 @@ export function Navbar() {
               textDecoration: "none",
             }}
           >
-            LOGO
+            PADELELITE
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (

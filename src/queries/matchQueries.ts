@@ -1,4 +1,4 @@
-import { addDoc, collection, getDocs, query } from "firebase/firestore";
+import { addDoc, collection, getDocs, query, where } from "firebase/firestore";
 import { Match } from "../interfaces/interfaces";
 import { db } from "../utils/firebaseConfig";
 import { useMutation, useQuery } from "@tanstack/react-query";
@@ -43,3 +43,35 @@ export const useAddMatch = (match: Match) => {
     mutationFn: () => addMatch(match),
   });
 };
+
+export const getPlayerMatches = async (playerId: string | undefined) => {
+  if (!playerId) return [];
+
+  const matchesQuery = query(
+    collection(db, "matches"),
+    where("players", "array-contains", playerId)
+  );
+
+  const matchesQuerySnapshot = getDocs(matchesQuery);
+
+  const matchesQueryResponse = await matchesQuerySnapshot;
+
+  const matches: Match[] = matchesQueryResponse.docs.map((match) => {
+    return {
+      id: match.id,
+      date: match.data().date,
+      league: match.data().league,
+      players: match.data().players,
+      subMatches: match.data().subMatches,
+    };
+  });
+
+  return matches;
+};
+
+export function usePlayerMatches(playerId: string | undefined) {
+  return useQuery<Match[]>({
+    queryKey: ["players-matches", playerId],
+    queryFn: () => getPlayerMatches(playerId),
+  });
+}

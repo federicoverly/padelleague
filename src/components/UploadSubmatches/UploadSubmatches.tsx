@@ -1,8 +1,9 @@
-import { TextField, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import React, { Dispatch, SetStateAction } from "react";
 import { Player } from "../../interfaces/interfaces";
 import { CustomButton } from "../CustomButton/CustomButton";
 import styles from "./UploadSubmatches.module.css";
+import { ScoreInput } from "../ScoreInput/ScoreInput";
 
 export interface UploadSubmatchesProps {
   completeSelectedPlayers: Player[];
@@ -48,40 +49,21 @@ export const UploadSubmatches = ({
           {" and "}
           {completeSelectedPlayers[1].name} {completeSelectedPlayers[1].surname}
         </Typography>
-        <TextField
-          type="number"
-          value={matchOneTeamOneScore}
-          onChange={(e) => setMatchOneTeamOneScore(Number(e.target.value))}
-          sx={{
-            width: "5rem",
-            color: "white",
-            border: "1px solid white",
-            input: {
-              color: "white",
-              textAlign: "center",
-            },
-          }}
+        <ScoreInput
+          score={matchOneTeamOneScore}
+          setScore={setMatchOneTeamOneScore}
         />
         <Typography>
           {completeSelectedPlayers[2].name} {completeSelectedPlayers[2].surname}
           {" and "}
           {completeSelectedPlayers[3].name} {completeSelectedPlayers[3].surname}
         </Typography>
-        <TextField
-          type="number"
-          value={matchOneTeamTwoScore}
-          onChange={(e) => setMatchOneTeamTwoScore(Number(e.target.value))}
-          sx={{
-            width: "5rem",
-            color: "white",
-            border: "1px solid white",
-            input: {
-              color: "white",
-              textAlign: "center",
-            },
-          }}
+        <ScoreInput
+          score={matchOneTeamTwoScore}
+          setScore={setMatchOneTeamTwoScore}
         />
       </div>
+
       <Typography variant="h5">Second Match </Typography>
       <div className={styles.matchAndScoreContainer}>
         <Typography>
@@ -89,38 +71,18 @@ export const UploadSubmatches = ({
           {" and "}
           {completeSelectedPlayers[2].name} {completeSelectedPlayers[2].surname}
         </Typography>
-        <TextField
-          type="number"
-          value={matchTwoTeamOneScore}
-          onChange={(e) => setMatchTwoTeamOneScore(Number(e.target.value))}
-          sx={{
-            width: "5rem",
-            color: "white",
-            border: "1px solid white",
-            input: {
-              color: "white",
-              textAlign: "center",
-            },
-          }}
+        <ScoreInput
+          score={matchTwoTeamOneScore}
+          setScore={setMatchTwoTeamOneScore}
         />
         <Typography>
           {completeSelectedPlayers[1].name} {completeSelectedPlayers[1].surname}
           {" and "}
           {completeSelectedPlayers[3].name} {completeSelectedPlayers[3].surname}
         </Typography>
-        <TextField
-          type="number"
-          value={matchTwoTeamTwoScore}
-          onChange={(e) => setMatchTwoTeamTwoScore(Number(e.target.value))}
-          sx={{
-            width: "5rem",
-            color: "white",
-            border: "1px solid white",
-            input: {
-              color: "white",
-              textAlign: "center",
-            },
-          }}
+        <ScoreInput
+          score={matchTwoTeamTwoScore}
+          setScore={setMatchTwoTeamTwoScore}
         />
       </div>
       <Typography variant="h5">Third Match </Typography>
@@ -130,38 +92,18 @@ export const UploadSubmatches = ({
           {" and "}
           {completeSelectedPlayers[3].name} {completeSelectedPlayers[3].surname}
         </Typography>
-        <TextField
-          type="number"
-          value={matchThreeTeamOneScore}
-          onChange={(e) => setMatchThreeTeamOneScore(Number(e.target.value))}
-          sx={{
-            width: "5rem",
-            color: "white",
-            border: "1px solid white",
-            input: {
-              color: "white",
-              textAlign: "center",
-            },
-          }}
+        <ScoreInput
+          score={matchThreeTeamOneScore}
+          setScore={setMatchThreeTeamOneScore}
         />
         <Typography>
           {completeSelectedPlayers[1].name} {completeSelectedPlayers[1].surname}
           {" and "}
           {completeSelectedPlayers[2].name} {completeSelectedPlayers[2].surname}
         </Typography>
-        <TextField
-          type="number"
-          value={matchThreeTeamTwoScore}
-          onChange={(e) => setMatchThreeTeamTwoScore(Number(e.target.value))}
-          sx={{
-            width: "5rem",
-            color: "white",
-            border: "1px solid white",
-            input: {
-              color: "white",
-              textAlign: "center",
-            },
-          }}
+        <ScoreInput
+          score={matchThreeTeamTwoScore}
+          setScore={setMatchThreeTeamTwoScore}
         />
       </div>
       <div className={styles.buttonsContainer}>

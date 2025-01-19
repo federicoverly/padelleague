@@ -1,5 +1,5 @@
-import { collection, getDocs, query } from "firebase/firestore";
-import { Match, Player } from "../interfaces/interfaces";
+import { collection, doc, getDoc, getDocs, query } from "firebase/firestore";
+import { Player } from "../interfaces/interfaces";
 import { db } from "../utils/firebaseConfig";
 import { useQuery } from "@tanstack/react-query";
 
@@ -27,5 +27,32 @@ export function useAllPlayers() {
   return useQuery<Player[]>({
     queryKey: ["players"],
     queryFn: () => getAllPlayers(),
+  });
+}
+
+export const getPlayer = async (playerId: string | undefined) => {
+  if (!playerId) return;
+
+  const playerRef = doc(db, "players", playerId);
+
+  const playerSnap = await getDoc(playerRef);
+
+  if (!playerSnap.exists()) return;
+
+  const player: Player = {
+    id: playerSnap.id,
+    name: playerSnap.data().name,
+    surname: playerSnap.data().surname,
+    email: playerSnap.data().email,
+    image: playerSnap.data().image,
+  };
+
+  return player;
+};
+
+export function usePlayer(playerId: string | undefined) {
+  return useQuery<Player | undefined>({
+    queryKey: ["player", playerId],
+    queryFn: () => getPlayer(playerId),
   });
 }

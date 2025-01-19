@@ -7,6 +7,7 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { UploadMatchContainer } from "./components/UploadMatchContainer/UploadMatchContainer";
 import { PlayersContainer } from "./components/PlayersContainer/PlayersContainer";
 import { MatchesContainer } from "./components/MatchesContainer/MatchesContainer";
+import { PlayerDetails } from "./components/PlayerDetails/PlayerDetails";
 
 const router = createBrowserRouter([
   {
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
   {
     path: "players",
     element: <PlayersContainer />,
+  },
+  {
+    path: "players/:playerId",
+    element: <PlayerDetails />,
   },
   {
     path: "matches",
