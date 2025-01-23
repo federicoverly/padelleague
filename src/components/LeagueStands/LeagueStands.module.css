@@ -11,8 +11,9 @@
 
 .listHeader,
 .listItem {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr 1fr;
+  text-align: center;
   width: 100%;
   min-width: 70vw;
   padding: 10px;

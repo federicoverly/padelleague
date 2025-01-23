@@ -13,13 +13,16 @@ export const LeagueStands = () => {
   const matches = useAllMatches();
   const players = useAllPlayers();
 
-  const playersWithPoints = useMemo(() => {
+  const playersWithPointsAndMatches = useMemo(() => {
     if (!players.data || !matches.data) return;
 
     const playersAndPoints = players.data?.map((player) => {
       return {
         ...player,
         points: calculatePlayersPoints(player.id, matches.data || []),
+        matches: matches.data?.filter((match) =>
+          match.players.includes(player.id)
+        ),
       };
     });
 
@@ -33,14 +36,16 @@ export const LeagueStands = () => {
         <div>Position</div>
         <div>Name</div>
         <div>Points</div>
+        <div>Matches</div>
       </div>
-      {playersWithPoints?.map((player, index) => (
+      {playersWithPointsAndMatches?.map((player, index) => (
         <div key={player.id} className={styles.listItem}>
           <div>{index + 1}</div>
           <div>
             {player.name} {player.surname}
           </div>
           <div>{player.points}</div>
+          <div>{player.matches?.length}</div>
         </div>
       ))}
       <CustomButton

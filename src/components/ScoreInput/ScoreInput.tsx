@@ -10,7 +10,8 @@ export const ScoreInput = ({ score, setScore }: ScoreInputProps) => {
   return (
     <input
       type="number"
-      value={score}
+      value={score.toString()}
+      placeholder="0"
       onChange={(event) => setScore(Number(event.target.value))}
       className={styles.input}
     />

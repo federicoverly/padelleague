@@ -5,6 +5,7 @@ import { useAddMatch } from "../../queries/matchQueries";
 import { PageLayout } from "../PageLayout/PageLayout";
 import { SelectMatchPlayers } from "../SelectMatchPlayers/SelectMatchPlayers";
 import { UploadSubmatches } from "../UploadSubmatches/UploadSubmatches";
+import { useNavigate } from "react-router-dom";
 
 export const UploadMatchContainer = () => {
   const [step, setStep] = useState<"players" | "submatches">(`players`);
@@ -64,6 +65,8 @@ export const UploadMatchContainer = () => {
 
   const players = useAllPlayers();
 
+  const navigate = useNavigate();
+
   const sortedPlayers = useMemo(() => {
     return players.data?.sort((a, b) => {
       return a.name.localeCompare(b.name);
@@ -96,10 +99,11 @@ export const UploadMatchContainer = () => {
   const handleAddMatch = useCallback(() => {
     if (!selectedPlayers.length || selectedPlayers.length < 4) return;
 
-    console.log("adding match");
-
     addMatch.mutate();
-  }, [selectedPlayers, addMatch]);
+    setTimeout(() => {
+      navigate("/");
+    }, 2000);
+  }, [selectedPlayers.length, addMatch, navigate]);
 
   return (
     <PageLayout>
