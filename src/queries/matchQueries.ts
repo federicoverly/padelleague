@@ -31,7 +31,6 @@ export function useAllMatches() {
 }
 
 const addMatch = async (match: Match) => {
-  console.log(match);
   const docRef = await addDoc(collection(db, "matches"), match);
 
   return docRef;
