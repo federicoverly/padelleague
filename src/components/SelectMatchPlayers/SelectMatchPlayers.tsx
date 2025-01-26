@@ -7,7 +7,6 @@ import {
   SelectChangeEvent,
 } from "@mui/material";
 import React, { Dispatch, ReactNode, SetStateAction } from "react";
-import { CustomButton } from "../CustomButton/CustomButton";
 import styles from "./SelectMatchPlayers.module.css";
 import { Player } from "../../interfaces/interfaces";
 
@@ -28,7 +27,7 @@ export const SelectMatchPlayers = ({
 }: SelectMatchPlayersProps) => {
   return (
     <div className={styles.selectPlayersContainer}>
-      <Typography variant="h4">Select players</Typography>
+      <Typography variant="h6">Select players</Typography>
       {sortedPlayers && sortedPlayers.length > 0 && (
         <div className={styles.selectPlayers}>
           <FormControl fullWidth>
@@ -72,12 +71,6 @@ export const SelectMatchPlayers = ({
               ))}
             </Select>
           </FormControl>
-          <CustomButton
-            onClick={() => setStep("submatches")}
-            disabled={selectedPlayers.length < 4}
-            type="primary"
-            title="Continue"
-          />
         </div>
       )}
     </div>

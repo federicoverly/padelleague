@@ -7,7 +7,6 @@ import Typography from "@mui/material/Typography";
 import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
-import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
 import { useCallback, useState } from "react";
@@ -74,7 +73,7 @@ export function Navbar() {
             variant="h6"
             noWrap
             component="a"
-            href="#navbar"
+            href=""
             sx={{
               mr: 2,
               display: { xs: "none", md: "flex" },
@@ -155,11 +154,6 @@ export function Navbar() {
                 {page.title}
               </Button>
             ))}
-          </Box>
-          <Box sx={{ flexGrow: 0 }}>
-            <IconButton sx={{ p: 0 }}>
-              <Avatar alt="MG" src="/static/images/avatar/2.jpg" />
-            </IconButton>
           </Box>
         </Toolbar>
       </Container>

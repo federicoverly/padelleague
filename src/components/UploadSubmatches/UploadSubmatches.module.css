@@ -7,16 +7,6 @@
   width: 80vw;
 }
 
-.matchAndScoreContainer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 10px;
-  gap: 1rem;
-  padding-top: 1rem;
-  flex-wrap: wrap;
-}
-
 .buttonsContainer {
   display: flex;
   justify-content: center;

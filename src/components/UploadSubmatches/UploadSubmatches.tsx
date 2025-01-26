@@ -3,7 +3,7 @@ import React, { Dispatch, SetStateAction } from "react";
 import { Player } from "../../interfaces/interfaces";
 import { CustomButton } from "../CustomButton/CustomButton";
 import styles from "./UploadSubmatches.module.css";
-import { ScoreInput } from "../ScoreInput/ScoreInput";
+import { UploadSubmatchCard } from "../UploadSubmatchCard/UploadSubmatchCard";
 
 export interface UploadSubmatchesProps {
   completeSelectedPlayers: Player[];
@@ -43,69 +43,32 @@ export const UploadSubmatches = ({
   return (
     <div className={styles.container}>
       <Typography variant="h5">First Match </Typography>
-      <div className={styles.matchAndScoreContainer}>
-        <Typography>
-          {completeSelectedPlayers[0].name} {completeSelectedPlayers[0].surname}
-          {" and "}
-          {completeSelectedPlayers[1].name} {completeSelectedPlayers[1].surname}
-        </Typography>
-        <ScoreInput
-          score={matchOneTeamOneScore}
-          setScore={setMatchOneTeamOneScore}
-        />
-        <Typography>
-          {completeSelectedPlayers[2].name} {completeSelectedPlayers[2].surname}
-          {" and "}
-          {completeSelectedPlayers[3].name} {completeSelectedPlayers[3].surname}
-        </Typography>
-        <ScoreInput
-          score={matchOneTeamTwoScore}
-          setScore={setMatchOneTeamTwoScore}
-        />
-      </div>
-
+      <UploadSubmatchCard
+        teamOne={`${completeSelectedPlayers[0].name} ${completeSelectedPlayers[0].surname} and ${completeSelectedPlayers[1].name} ${completeSelectedPlayers[1].surname}`}
+        teamTwo={`${completeSelectedPlayers[2].name} ${completeSelectedPlayers[2].surname} and ${completeSelectedPlayers[3].name} ${completeSelectedPlayers[3].surname}`}
+        scoreTeamOne={matchOneTeamOneScore}
+        setScoreTeamOne={setMatchOneTeamOneScore}
+        scoreTeamTwo={matchOneTeamTwoScore}
+        setScoreTeamTwo={setMatchOneTeamTwoScore}
+      />
       <Typography variant="h5">Second Match </Typography>
-      <div className={styles.matchAndScoreContainer}>
-        <Typography>
-          {completeSelectedPlayers[0].name} {completeSelectedPlayers[0].surname}
-          {" and "}
-          {completeSelectedPlayers[2].name} {completeSelectedPlayers[2].surname}
-        </Typography>
-        <ScoreInput
-          score={matchTwoTeamOneScore}
-          setScore={setMatchTwoTeamOneScore}
-        />
-        <Typography>
-          {completeSelectedPlayers[1].name} {completeSelectedPlayers[1].surname}
-          {" and "}
-          {completeSelectedPlayers[3].name} {completeSelectedPlayers[3].surname}
-        </Typography>
-        <ScoreInput
-          score={matchTwoTeamTwoScore}
-          setScore={setMatchTwoTeamTwoScore}
-        />
-      </div>
+      <UploadSubmatchCard
+        teamOne={`${completeSelectedPlayers[0].name} ${completeSelectedPlayers[0].surname} and ${completeSelectedPlayers[2].name} ${completeSelectedPlayers[2].surname}`}
+        teamTwo={`${completeSelectedPlayers[1].name} ${completeSelectedPlayers[1].surname} and ${completeSelectedPlayers[3].name} ${completeSelectedPlayers[3].surname}`}
+        scoreTeamOne={matchTwoTeamOneScore}
+        setScoreTeamOne={setMatchTwoTeamOneScore}
+        scoreTeamTwo={matchTwoTeamTwoScore}
+        setScoreTeamTwo={setMatchTwoTeamTwoScore}
+      />
       <Typography variant="h5">Third Match </Typography>
-      <div className={styles.matchAndScoreContainer}>
-        <Typography>
-          {completeSelectedPlayers[0].name} {completeSelectedPlayers[0].surname}
-          {" and "}
-          {completeSelectedPlayers[3].name} {completeSelectedPlayers[3].surname}
-        </Typography>
-        <ScoreInput
-          score={matchThreeTeamOneScore}
-          setScore={setMatchThreeTeamOneScore}
-        />
-        <Typography>
-          {completeSelectedPlayers[1].name} {completeSelectedPlayers[1].surname}
-          {" and "}
-          {completeSelectedPlayers[2].name} {completeSelectedPlayers[2].surname}
-        </Typography>
-        <ScoreInput
-          score={matchThreeTeamTwoScore}
-          setScore={setMatchThreeTeamTwoScore}
-        />
-      </div>
+      <UploadSubmatchCard
+        teamOne={`${completeSelectedPlayers[0].name} ${completeSelectedPlayers[0].surname} and ${completeSelectedPlayers[3].name} ${completeSelectedPlayers[3].surname}`}
+        teamTwo={`${completeSelectedPlayers[1].name} ${completeSelectedPlayers[1].surname} and ${completeSelectedPlayers[2].name} ${completeSelectedPlayers[2].surname}`}
+        scoreTeamOne={matchThreeTeamOneScore}
+        setScoreTeamOne={setMatchThreeTeamOneScore}
+        scoreTeamTwo={matchThreeTeamTwoScore}
+        setScoreTeamTwo={setMatchThreeTeamTwoScore}
+      />
       <div className={styles.buttonsContainer}>
         <CustomButton
           title="Back to select players"
