@@ -30,6 +30,38 @@ export function useAllMatches() {
   });
 }
 
+const getAllMatchesByLeague = async (league: string | undefined) => {
+  if (!league) return [];
+
+  const matchesQuery = query(
+    collection(db, "matches"),
+    where("league", "==", league)
+  );
+
+  const matchesQuerySnapshot = getDocs(matchesQuery);
+
+  const matchesQueryResponse = await matchesQuerySnapshot;
+
+  const matches: Match[] = matchesQueryResponse.docs.map((match) => {
+    return {
+      id: match.id,
+      date: match.data().date,
+      league: match.data().league,
+      players: match.data().players,
+      subMatches: match.data().subMatches,
+    };
+  });
+
+  return matches;
+};
+
+export function useAllMatchesByLeague(league: string | undefined) {
+  return useQuery<Match[]>({
+    queryKey: ["matches", league],
+    queryFn: () => getAllMatchesByLeague(league),
+  });
+}
+
 const addMatch = async (match: Match) => {
   const docRef = await addDoc(collection(db, "matches"), match);
 
