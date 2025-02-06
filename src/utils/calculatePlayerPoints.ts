@@ -3,7 +3,7 @@ import { Match } from "../interfaces/interfaces";
 export function calculatePlayersPoints(playerId: string, matches: Match[]) {
   if (!matches || matches.length === 0) return 0;
 
-  let points = 0;
+  let points = 100;
   let matchesWon = 0;
 
   const subtMatches = matches.flatMap((match) => match.subMatches);
@@ -18,7 +18,7 @@ export function calculatePlayersPoints(playerId: string, matches: Match[]) {
         points += 1;
       } else if (subMatch.scores.teamOne < subMatch.scores.teamTwo) {
         if (subMatch.scores.teamOne === 0 && subMatch.scores.teamTwo === 6) {
-          points = points - 1;
+          points = points - 2;
         }
       }
     } else if (subMatch.teams.teamTwo.includes(playerId)) {
@@ -30,12 +30,15 @@ export function calculatePlayersPoints(playerId: string, matches: Match[]) {
         points += 1;
       } else if (subMatch.scores.teamOne < subMatch.scores.teamTwo) {
         if (subMatch.scores.teamTwo === 0 && subMatch.scores.teamOne === 6) {
-          points = points - 1;
+          points = points - 2;
         }
       }
     }
     if (matchesWon === subtMatches.length) {
       points += 1;
+    }
+    if (matchesWon === 0) {
+      points = points - 1;
     }
   });
 
