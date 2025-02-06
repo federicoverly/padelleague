@@ -27,7 +27,11 @@ export const LeagueStands = () => {
     const playersAndPoints = players.data?.map((player) => {
       return {
         ...player,
-        points: calculatePlayersPoints(player.id, matches.data || []),
+        points: calculatePlayersPoints(
+          player.id,
+          matches.data?.filter((match) => match.players.includes(player.id)) ||
+            []
+        ),
         matches: matches.data?.filter((match) =>
           match.players.includes(player.id)
         ),
