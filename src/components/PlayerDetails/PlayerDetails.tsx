@@ -6,6 +6,7 @@ import { usePlayerMatches } from "../../queries/matchQueries";
 import { calculateMatchStats } from "../../utils/calculateMatchStats";
 import styles from "./PlayerDetails.module.css";
 import { Typography } from "@mui/material";
+import { playerImages } from "../../assets/playerImages/playerImages";
 
 export const PlayerDetails = () => {
   const { playerId } = useParams();
@@ -25,14 +26,21 @@ export const PlayerDetails = () => {
     return winRate;
   }, [playerStats]);
 
+  const playerImage = useMemo(() => {
+    if (!player.data) return;
+
+    return playerImages.find((image) => image.id === player.data?.id)?.photo;
+  }, [player.data]);
+
   return (
     <PageLayout>
       {player.data && (
         <div>
-          <div>
+          <div className={styles.nameAndImageContainer}>
             <Typography variant="h4">
               {player.data.name} {player.data.surname}
             </Typography>
+            <img src={playerImage} alt="loading" className={styles.image} />
           </div>
           <div>
             <Typography variant="h6">Stats</Typography>

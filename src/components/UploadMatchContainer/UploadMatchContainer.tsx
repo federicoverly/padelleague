@@ -117,6 +117,7 @@ export const UploadMatchContainer = () => {
       return;
 
     addMatch.mutate();
+
     setTimeout(() => {
       navigate("/");
     }, 2000);

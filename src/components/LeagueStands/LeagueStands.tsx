@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import styles from "./LeagueStands.module.css";
 import { useAllPlayers } from "../../queries/playersQueries";
 import { CustomButton } from "../CustomButton/CustomButton";
+import { PlayerCard } from "../PlayerCard/PlayerCard";
 
 export const LeagueStands = () => {
   const navigate = useNavigate();
@@ -85,9 +86,7 @@ export const LeagueStands = () => {
       {playersWithPointsAndMatches?.map((player, index) => (
         <div key={player.id} className={styles.listItem}>
           <div>{index + 1}</div>
-          <div>
-            {player.name} {player.surname}
-          </div>
+          <PlayerCard player={player} />
           <div>{player.points}</div>
           <div>{player.matches?.length}</div>
         </div>
