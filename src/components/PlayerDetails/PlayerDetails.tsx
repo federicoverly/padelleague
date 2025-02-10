@@ -7,6 +7,7 @@ import { calculateMatchStats } from "../../utils/calculateMatchStats";
 import styles from "./PlayerDetails.module.css";
 import { Typography } from "@mui/material";
 import { playerImages } from "../../assets/playerImages/playerImages";
+import placeholder from "../../assets/playerImages/placeholder.png";
 
 export const PlayerDetails = () => {
   const { playerId } = useParams();
@@ -40,7 +41,11 @@ export const PlayerDetails = () => {
             <Typography variant="h4">
               {player.data.name} {player.data.surname}
             </Typography>
-            <img src={playerImage} alt="loading" className={styles.image} />
+            <img
+              src={playerImage ?? placeholder}
+              alt="playerimage"
+              className={styles.image}
+            />
           </div>
           <div>
             <Typography variant="h6">Stats</Typography>
