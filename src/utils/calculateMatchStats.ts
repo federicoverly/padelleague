@@ -6,6 +6,7 @@ export const calculateMatchStats = (
 ) => {
   if (!playerId) return;
   let matchesWon = 0;
+  let gamesWon = 0;
 
   const subtMatches = matches.flatMap((match) => match.subMatches);
 
@@ -14,16 +15,22 @@ export const calculateMatchStats = (
       if (subMatch.scores.teamOne > subMatch.scores.teamTwo) {
         matchesWon += 1;
       }
+      gamesWon = gamesWon + subMatch.scores.teamOne;
     } else if (subMatch.teams.teamTwo.includes(playerId)) {
       if (subMatch.scores.teamTwo > subMatch.scores.teamOne) {
         matchesWon += 1;
       }
+      gamesWon = gamesWon + subMatch.scores.teamTwo;
     }
   });
 
   return {
     matchesWon: matchesWon,
-    matches: matches.length,
-    sets: subtMatches.length,
+    matchesPlayed: subtMatches.length,
+    gamesWon: gamesWon,
+    gamesPlayed: subtMatches.reduce(
+      (acc, curr) => acc + curr.scores.teamOne + curr.scores.teamTwo,
+      0
+    ),
   };
 };

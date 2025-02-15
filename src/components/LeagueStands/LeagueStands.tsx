@@ -7,6 +7,7 @@ import styles from "./LeagueStands.module.css";
 import { useAllPlayers } from "../../queries/playersQueries";
 import { CustomButton } from "../CustomButton/CustomButton";
 import { PlayerCard } from "../PlayerCard/PlayerCard";
+import { calculateMatchStats } from "../../utils/calculateMatchStats";
 
 export const LeagueStands = () => {
   const navigate = useNavigate();
@@ -26,6 +27,32 @@ export const LeagueStands = () => {
     if (!players.data || !matches.data || matches.data.length === 0) return;
 
     const playersAndPoints = players.data?.map((player) => {
+      const matchesPlayed = matches.data?.filter((match) =>
+        match.players.includes(player.id)
+      );
+
+      const playerStats = calculateMatchStats(player.id, matchesPlayed || []);
+
+      if (!playerStats) {
+        return {
+          ...player,
+          points: 0,
+          matches: [],
+          winRate: 0,
+          gamesWinRate: 0,
+        };
+      }
+
+      const matchWinRate = (
+        (playerStats.matchesWon / playerStats.matchesPlayed) *
+        100
+      ).toFixed(2);
+
+      const matchGamesWinRate = (
+        (playerStats.gamesWon / playerStats.gamesPlayed) *
+        100
+      ).toFixed(2);
+
       return {
         ...player,
         points: calculatePlayersPoints(
@@ -33,13 +60,20 @@ export const LeagueStands = () => {
           matches.data?.filter((match) => match.players.includes(player.id)) ||
             []
         ),
-        matches: matches.data?.filter((match) =>
-          match.players.includes(player.id)
-        ),
+        matches: matchesPlayed,
+        winRate: Number(matchWinRate),
+        gamesWinRate: Number(matchGamesWinRate),
       };
     });
 
-    return playersAndPoints?.sort((a, b) => b.points - a.points);
+    return playersAndPoints?.sort((a, b) => {
+      if (b.points === a.points) {
+        if (b.winRate === a.winRate) {
+          return b.gamesWinRate - a.gamesWinRate;
+        }
+        return b.winRate - a.winRate;
+      } else return b.points - a.points;
+    });
   }, [players.data, matches.data]);
 
   const leagueOptions = useMemo(() => {

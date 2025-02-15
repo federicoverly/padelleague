@@ -21,10 +21,17 @@ export const PlayerDetails = () => {
   const calculateWinRate = useMemo(() => {
     if (!playerStats) return;
 
-    const winRate = ((playerStats.matchesWon / playerStats.sets) * 100).toFixed(
-      2
-    );
-    return winRate;
+    const matchWinRate = (
+      (playerStats.matchesWon / playerStats.matchesPlayed) *
+      100
+    ).toFixed(2);
+
+    const matchGamesWinRate = (
+      (playerStats.gamesWon / playerStats.gamesPlayed) *
+      100
+    ).toFixed(2);
+
+    return { winRate: matchWinRate, gamesWinRate: matchGamesWinRate };
   }, [playerStats]);
 
   const playerImage = useMemo(() => {
@@ -51,10 +58,10 @@ export const PlayerDetails = () => {
             <Typography variant="h6">Stats</Typography>
             {playerStats && (
               <div className={styles.statsContainer}>
-                <div>Matches: {playerStats.matches}</div>
-                <div>Sets: {playerStats.sets}</div>
-                <div>Sets won: {playerStats.matchesWon}</div>
-                <div>Win rate: {calculateWinRate}%</div>
+                <div>Matches: {playerStats.matchesPlayed}</div>
+                <div>Matches Won: {playerStats.matchesWon}</div>
+                <div>Matches Win Rate: {calculateWinRate?.winRate}%</div>
+                <div>Games Win Rate: {calculateWinRate?.gamesWinRate}%</div>
               </div>
             )}
           </div>
