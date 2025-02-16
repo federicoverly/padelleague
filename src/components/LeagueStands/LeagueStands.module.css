@@ -19,3 +19,7 @@
   padding: 10px;
   border-radius: 5px;
 }
+
+.listHeader {
+  font-weight: bold;
+}

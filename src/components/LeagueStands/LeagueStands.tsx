@@ -76,6 +76,20 @@ export const LeagueStands = () => {
     });
   }, [players.data, matches.data]);
 
+  const playersWithMatches = useMemo(() => {
+    const players = playersWithPointsAndMatches?.filter(
+      (player) => player.matches?.length !== 0
+    );
+    return players;
+  }, [playersWithPointsAndMatches]);
+
+  const playersWithoutMatches = useMemo(() => {
+    const players = playersWithPointsAndMatches?.filter(
+      (player) => player.matches?.length === 0
+    );
+    return players;
+  }, [playersWithPointsAndMatches]);
+
   const leagueOptions = useMemo(() => {
     const year = new Date().getFullYear();
     const quarters = ["Q1", "Q2", "Q3", "Q4"];
@@ -117,7 +131,7 @@ export const LeagueStands = () => {
         <div>Points</div>
         <div>Matches</div>
       </div>
-      {playersWithPointsAndMatches?.map((player, index) => (
+      {playersWithMatches?.map((player, index) => (
         <div key={player.id} className={styles.listItem}>
           <div>{index + 1}</div>
           <PlayerCard player={player} />
@@ -125,6 +139,12 @@ export const LeagueStands = () => {
           <div>{player.matches?.length}</div>
         </div>
       ))}
+      <Typography variant="h6">Players without matches</Typography>
+      <div>
+        {playersWithoutMatches?.map((player) => (
+          <PlayerCard player={player} key={player.id} />
+        ))}
+      </div>
       <CustomButton
         type="primary"
         title="Upload match"
