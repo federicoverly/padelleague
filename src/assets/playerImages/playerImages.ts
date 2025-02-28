@@ -2,6 +2,7 @@ import amr from "./vaijEPogIuJsx0oe5pIC.jpeg";
 import fede from "./N5QfaJashVQuTPzc8ZoC.jpg";
 import peter from "./Zb34nRzBtjUibWBElIsV.jpeg";
 import mauri from "./mSDnpmQTz7wRwksJYPUb.jpeg";
+import glynn from "./npx782HQQaIFUL1pSGsl.jpeg";
 
 export const playerImages = [
   {
@@ -19,5 +20,9 @@ export const playerImages = [
   {
     id: "mSDnpmQTz7wRwksJYPUb",
     photo: mauri,
+  },
+  {
+    id: "npx782HQQaIFUL1pSGsl",
+    photo: glynn,
   },
 ];
