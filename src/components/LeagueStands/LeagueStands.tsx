@@ -80,15 +80,18 @@ export const LeagueStands = () => {
     const players = playersWithPointsAndMatches?.filter(
       (player) => player.matches?.length !== 0
     );
+
     return players;
   }, [playersWithPointsAndMatches]);
 
   const playersWithoutMatches = useMemo(() => {
-    const players = playersWithPointsAndMatches?.filter(
-      (player) => player.matches?.length === 0
+    if (!players.data) return;
+    if (!matches.data || matches.data.length === 0) return players.data;
+    const playersWithoutMatchesInLeague = playersWithMatches?.filter((player) =>
+      player.matches?.filter((match) => match.league === league)
     );
-    return players;
-  }, [playersWithPointsAndMatches]);
+    return playersWithoutMatchesInLeague;
+  }, [league, matches.data, players.data, playersWithMatches]);
 
   const leagueOptions = useMemo(() => {
     const year = new Date().getFullYear();
