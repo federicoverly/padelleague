@@ -69,9 +69,9 @@ export const LeagueStands = () => {
     return playersAndPoints?.sort((a, b) => {
       if (b.points === a.points) {
         if (b.winRate === a.winRate) {
-          return b.gamesWinRate - a.gamesWinRate;
+          return a.gamesWinRate - b.gamesWinRate;
         }
-        return b.winRate - a.winRate;
+        return a.winRate - b.winRate;
       } else return b.points - a.points;
     });
   }, [players.data, matches.data]);
@@ -87,11 +87,18 @@ export const LeagueStands = () => {
   const playersWithoutMatches = useMemo(() => {
     if (!players.data) return;
     if (!matches.data || matches.data.length === 0) return players.data;
-    const playersWithoutMatchesInLeague = playersWithMatches?.filter((player) =>
-      player.matches?.filter((match) => match.league === league)
-    );
+
+    const playersWithoutMatchesInLeague = players.data?.filter((player) => {
+      const matchesPlayed = matches.data?.filter((match) =>
+        match.players.includes(player.id)
+      );
+
+      if (!matchesPlayed || matchesPlayed.length === 0) return player;
+      return undefined;
+    });
+
     return playersWithoutMatchesInLeague;
-  }, [league, matches.data, players.data, playersWithMatches]);
+  }, [matches.data, players.data]);
 
   const leagueOptions = useMemo(() => {
     const year = new Date().getFullYear();
