@@ -1,0 +1,36 @@
+.calendar {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  background-color: var(--light-purple);
+  color: white;
+  text-align: center;
+  text-decoration: none;
+}
+
+.react-calendar__navigation {
+  color: red;
+  background-color: red;
+  display: hidden;
+}
+
+.calendar > div > button {
+  background-color: var(--light-purple);
+  color: white;
+  border: none;
+  font-size: 1.3rem;
+}
+
+.tiles {
+  background-color: var(--midnight-green);
+  border: none;
+  height: 2rem;
+  width: 2rem;
+}
+
+.bookedMatch {
+  background-color: var(--pumpkin);
+  border: none;
+  height: 2rem;
+  width: 2rem;
+}

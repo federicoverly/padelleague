@@ -24,3 +24,9 @@ export interface SubMatch {
     teamTwo: number;
   };
 }
+
+export interface BookedMatch {
+  id: string;
+  date: number;
+  players: string[];
+}

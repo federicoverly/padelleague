@@ -31,6 +31,10 @@ const pages = [
     title: "Players",
     link: "/players",
   },
+  {
+    title: "Calendar",
+    link: "/calendar",
+  },
 ];
 
 export function Navbar() {

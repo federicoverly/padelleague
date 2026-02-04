@@ -8,6 +8,7 @@ import { UploadMatchContainer } from "./components/UploadMatchContainer/UploadMa
 import { PlayersContainer } from "./components/PlayersContainer/PlayersContainer";
 import { MatchesContainer } from "./components/MatchesContainer/MatchesContainer";
 import { PlayerDetails } from "./components/PlayerDetails/PlayerDetails";
+import { MatchesCalendar } from "./components/MatchesCalendar/MatchesCalendar";
 
 const router = createBrowserRouter([
   {
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
   {
     path: "matches",
     element: <MatchesContainer />,
+  },
+  {
+    path: "calendar",
+    element: <MatchesCalendar />,
   },
 ]);
 
