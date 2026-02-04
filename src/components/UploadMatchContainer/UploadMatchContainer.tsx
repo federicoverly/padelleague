@@ -29,6 +29,15 @@ export const UploadMatchContainer = () => {
   const [matchThreeTeamTwoScore, setMatchThreeTeamTwoScore] =
     useState<number>(0);
 
+  console.log("selectedPlayers", selectedPlayers);
+  console.log("team scores", {
+    matchOneTeamOneScore,
+    matchOneTeamTwoScore,
+    matchTwoTeamOneScore,
+    matchTwoTeamTwoScore,
+    matchThreeTeamOneScore,
+    matchThreeTeamTwoScore,
+  });
   const subMatchesWithScores = useMemo(() => {
     return [
       {
@@ -65,10 +74,10 @@ export const UploadMatchContainer = () => {
   }, [
     matchOneTeamOneScore,
     matchOneTeamTwoScore,
-    matchThreeTeamOneScore,
-    matchThreeTeamTwoScore,
     matchTwoTeamOneScore,
     matchTwoTeamTwoScore,
+    matchThreeTeamOneScore,
+    matchThreeTeamTwoScore,
     selectedPlayers,
   ]);
 
@@ -92,7 +101,7 @@ export const UploadMatchContainer = () => {
   const completeSelectedPlayers = useMemo(() => {
     if (!players.data) return [];
     return players.data?.filter((player) =>
-      selectedPlayers.includes(player.id)
+      selectedPlayers.includes(player.id),
     );
   }, [players.data, selectedPlayers]);
 
